@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Declarative Recruitment — Federal Talent Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #07091a;
+    --navy-2: #0d1128;
+    --navy-3: #141933;
+    --navy-4: #1c2240;
+    --blue: #3b6ef5;
+    --blue-dim: rgba(59,110,245,0.12);
+    --teal: #0fd4a4;
+    --teal-dim: rgba(15,212,164,0.1);
+    --gold: #d4aa4f;
+    --gold-dim: rgba(212,170,79,0.1);
+    --text: #e8edf8;
+    --text-2: #8896b3;
+    --text-3: #4d5a7a;
+    --border: rgba(255,255,255,0.07);
+    --border-2: rgba(255,255,255,0.12);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(7,9,26,0.8);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+
+  .nav-logo-mark {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 0.05em;
+    background: var(--teal-dim);
+    border: 1px solid rgba(15,212,164,0.2);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .nav-logo-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-2);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy);
+    background: var(--teal);
+    text-decoration: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s;
+  }
+
+  .nav-cta:hover { opacity: 0.88; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 8rem 4rem 6rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(59,110,245,0.09) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 20% 70%, rgba(15,212,164,0.06) 0%, transparent 55%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+  }
+
+  .hero-inner {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  .hero-headline {
+    font-family: var(--serif);
+    font-size: clamp(52px, 7vw, 90px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 2rem;
+    max-width: 780px;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--navy);
+    background: var(--teal);
+    text-decoration: none;
+    padding: 0.875rem 1.75rem;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.88; }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-2);
+    text-decoration: none;
+    padding: 0.875rem 1.75rem;
+    border: 1px solid var(--border-2);
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover {
+    color: var(--text);
+    border-color: rgba(255,255,255,0.25);
+  }
+
+  .hero-stats {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .hero-stat {
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    min-width: 200px;
+  }
+
+  .hero-stat:first-child { border-radius: 8px 8px 0 0; }
+  .hero-stat:last-child { border-radius: 0 0 8px 8px; }
+
+  .hero-stat-num {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-stat-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    background: var(--navy-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.875rem 0;
+    overflow: hidden;
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 0;
+    animation: ticker 28s linear infinite;
+    width: max-content;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 2.5rem;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .ticker-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--teal);
+    opacity: 0.5;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 7rem 4rem; }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-label-num {
+    color: var(--blue);
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .section-body {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.8;
+    max-width: 560px;
+  }
+
+  /* ── ABOUT SPLIT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-right {
+    padding-top: 1rem;
+  }
+
+  .about-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-top: 2.5rem;
+  }
+
+  .pillar {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+
+  .pillar:first-child { border-radius: 8px 8px 0 0; }
+  .pillar:last-child { border-radius: 0 0 8px 8px; }
+  .pillar:hover { border-color: var(--border-2); }
+
+  .pillar-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: var(--teal-dim);
+    border: 1px solid rgba(15,212,164,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .pillar-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--teal);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .pillar-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .pillar-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+
+  /* ── SERVICES ── */
+  .services-section {
+    background: var(--navy-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    align-items: end;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+  }
+
+  .service-card {
+    background: var(--navy);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s;
+  }
+
+  .service-card:hover { border-color: var(--border-2); }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .service-card:hover::before { opacity: 1; }
+
+  .service-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 0.875rem;
+  }
+
+  .service-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.7;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: 1.5rem;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: var(--navy-3);
+    color: var(--text-3);
+    border: 1px solid var(--border);
+  }
+
+  /* ── CLIENTS ── */
+  .clients-section {}
+
+  .clients-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    align-items: end;
+  }
+
+  .prime-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-bottom: 3rem;
+  }
+
+  .prime-card {
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .prime-card:hover {
+    border-color: var(--border-2);
+    background: var(--navy-3);
+  }
+
+  .prime-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .prime-focus {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.05em;
+  }
+
+  .prime-badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--blue-dim);
+    color: #7da4fa;
+    border: 1px solid rgba(59,110,245,0.2);
+    width: fit-content;
+  }
+
+  /* ── EDGE ── */
+  .edge-section {
+    background: var(--navy-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .edge-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .edge-left {}
+
+  .edge-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    margin-top: 2rem;
+  }
+
+  .edge-metric {
+    background: var(--navy);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+
+  .edge-metric-num {
+    font-family: var(--serif);
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--teal);
+    margin-bottom: 0.375rem;
+  }
+
+  .edge-metric-label {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  .edge-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .edge-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--navy);
+    border: 1px solid var(--border);
+  }
+
+  .edge-item:first-child { border-radius: 8px 8px 0 0; }
+  .edge-item:last-child { border-radius: 0 0 8px 8px; }
+
+  .edge-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--teal-dim);
+    border: 1px solid rgba(15,212,164,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .edge-check svg {
+    width: 10px;
+    height: 10px;
+    stroke: var(--teal);
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .edge-item-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+
+  .edge-item-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+
+  /* ── CAPABILITY ── */
+  .cap-section {
+    background: linear-gradient(135deg, var(--navy) 0%, #0c1232 100%);
+    border-top: 1px solid var(--border);
+  }
+
+  .cap-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .cap-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--gold-dim);
+    border: 1px solid rgba(212,170,79,0.15);
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 1.25rem;
+  }
+
+  .cap-title {
+    font-family: var(--serif);
+    font-size: clamp(32px, 3.5vw, 46px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .cap-body {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.75;
+    max-width: 500px;
+  }
+
+  .cap-doc {
+    min-width: 260px;
+    background: var(--navy-2);
+    border: 1px solid var(--border-2);
+    border-radius: 10px;
+    padding: 2rem;
+  }
+
+  .cap-doc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cap-doc-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(212,170,79,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cap-doc-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--gold);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+  }
+
+  .cap-doc-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .cap-doc-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+  }
+
+  .cap-doc-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .cap-doc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cap-doc-row-key {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .cap-doc-row-val {
+    font-size: 12px;
+    color: var(--text-2);
+    font-weight: 400;
+  }
+
+  .cap-doc-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy);
+    background: var(--teal);
+    text-decoration: none;
+    padding: 0.75rem;
+    border-radius: 5px;
+    transition: opacity 0.2s;
+  }
+
+  .cap-doc-cta:hover { opacity: 0.88; }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-top: 2.5rem;
+  }
+
+  .contact-channel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+
+  .contact-channel:first-child { border-radius: 8px 8px 0 0; }
+  .contact-channel:last-child { border-radius: 0 0 8px 8px; }
+  .contact-channel:hover { border-color: var(--border-2); }
+
+  .contact-channel-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: var(--navy-3);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-channel-icon svg {
+    width: 15px;
+    height: 15px;
+    stroke: var(--text-2);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .contact-channel-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .contact-channel-val {
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .contact-form {
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2.5rem;
+  }
+
+  .form-title {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-sub {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-2);
+    margin-bottom: 2rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.875rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .form-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text);
+    background: var(--navy-3);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%234d5a7a' fill='none' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 2rem;
+  }
+
+  .form-select option { background: var(--navy-2); }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: rgba(15,212,164,0.4);
+    box-shadow: 0 0 0 3px rgba(15,212,164,0.05);
+  }
+
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder { color: var(--text-3); }
+
+  .form-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--navy);
+    background: var(--teal);
+    border: none;
+    padding: 0.9rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: opacity 0.2s;
+  }
+
+  .form-submit:hover { opacity: 0.88; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-2);
+    border-top: 1px solid var(--border);
+    padding: 3rem 4rem;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .footer-brand-name {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-brand-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-3);
+    line-height: 1.7;
+    max-width: 240px;
+  }
+
+  .footer-reg {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    margin-top: 1.25rem;
+  }
+
+  .footer-reg-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--text-3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .footer-reg-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--teal);
+    opacity: 0.5;
+  }
+
+  .footer-col-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text); }
+
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 2.5rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-parent {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+
+  /* ── DIVIDER ── */
+  .rule {
+    width: 40px;
+    height: 1px;
+    background: var(--teal);
+    opacity: 0.4;
+    margin: 1.5rem 0;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .hero { padding: 8rem 1.5rem 5rem; }
+    .hero-stats { display: none; }
+    .about-grid, .services-header, .edge-grid, .cap-inner, .contact-grid, .clients-intro { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .prime-list { grid-template-columns: repeat(2, 1fr); }
+    .edge-metrics { grid-template-columns: 1fr 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    footer { padding: 3rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-mark">DR</span>
+    <span class="nav-logo-name">Declarative Recruitment</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#clients">Who We Serve</a></li>
+    <li><a href="#edge">Why Us</a></li>
+    <li><a href="#capability">Capability</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-label">Federal Technical Recruiting</div>
+    <h1 class="hero-headline">
+      The talent that<br><em>executes</em> the mission.
+    </h1>
+    <p class="hero-sub">
+      Declarative Recruitment places elite AI/ML engineers and software developers with prime contractors delivering on federal and defense contracts. Clearance-aware. Precision-driven.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        Start a Search
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#capability" class="btn-ghost">
+        View Capability Statement
+      </a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">AI/ML</div>
+      <div class="hero-stat-label">Core Specialty</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">SWE</div>
+      <div class="hero-stat-label">Software Engineers</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">SB</div>
+      <div class="hero-stat-label">Small Business</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">561310</div>
+      <div class="hero-stat-label">NAICS Code</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-dot"></span>AI / Machine Learning Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Software Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Data Scientists</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ML Infrastructure</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Clearance-Eligible Candidates</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Defense Tech Specialists</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Federal Systems Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>DevSecOps</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>AI / Machine Learning Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Software Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Data Scientists</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ML Infrastructure</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Clearance-Eligible Candidates</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Defense Tech Specialists</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Federal Systems Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>DevSecOps</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <div class="section-label"><span class="section-label-num">01</span> — Who We Are</div>
+        <h2 class="section-title">A specialist firm built for the <em>federal stack.</em></h2>
+        <div class="rule"></div>
+        <p class="section-body">
+          Declarative Recruitment was purpose-built to serve prime contractors executing federal and defense technology contracts. We don't generalize. We place AI/ML engineers, software developers, and data scientists into roles where precision and security awareness are non-negotiable.
+        </p>
+        <p class="section-body" style="margin-top: 1rem;">
+          As a certified small business, we fulfill subcontracting requirements while delivering the caliber of talent that moves contracts forward.
+        </p>
+      </div>
+      <div class="about-right">
+        <div class="about-pillars fade-up">
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 16 16"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z"/></svg>
+            </div>
+            <div>
+              <div class="pillar-title">Specialist, not generalist</div>
+              <div class="pillar-desc">We focus exclusively on AI/ML and software engineering talent — the exact profiles primes struggle most to hire on contract timelines.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M8 5v6"/></svg>
+            </div>
+            <div>
+              <div class="pillar-title">Small business qualified</div>
+              <div class="pillar-desc">NAICS 561310 registered. We help primes fulfill small business subcontracting requirements without sacrificing quality.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 16 16"><path d="M8 1v14M1 8h14"/></svg>
+            </div>
+            <div>
+              <div class="pillar-title">Network depth in the right places</div>
+              <div class="pillar-desc">Built from years placing AI/ML engineers at tier-1 funded companies — talent that is elite, vetted, and increasingly interested in mission-driven work.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-inner">
+    <div class="services-header">
+      <div>
+        <div class="section-label"><span class="section-label-num">02</span> — Services</div>
+        <h2 class="section-title">What we do for <em>prime contractors.</em></h2>
+      </div>
+      <div>
+        <p class="section-body">
+          Whether you need to staff up quickly after a contract award or fulfill your small business subcontracting plan, we have a model that works within your procurement process.
+        </p>
+      </div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-num">SVC — 01</div>
+        <div class="service-title">Contract Staffing</div>
+        <div class="service-desc">Rapid placement of engineers and data scientists on active contracts. We move fast — built for the urgency that comes after a contract award.</div>
+        <div class="service-tags">
+          <span class="tag">W-2 & 1099</span>
+          <span class="tag">Contract to Hire</span>
+          <span class="tag">Rapid Deploy</span>
+        </div>
+      </div>
+      <div class="service-card fade-up delay-1">
+        <div class="service-num">SVC — 02</div>
+        <div class="service-title">Direct Hire Placement</div>
+        <div class="service-desc">Permanent placement for senior technical roles. We source, vet, and deliver candidates who understand the compliance and clearance landscape.</div>
+        <div class="service-tags">
+          <span class="tag">Senior IC</span>
+          <span class="tag">Staff Engineer</span>
+          <span class="tag">Tech Lead</span>
+        </div>
+      </div>
+      <div class="service-card fade-up delay-2">
+        <div class="service-num">SVC — 03</div>
+        <div class="service-title">Subcontract Partnership</div>
+        <div class="service-desc">Serve as a registered small business subcontractor on your staffing spend. We help you meet SBA subcontracting plan requirements with legitimate, high-quality delivery.</div>
+        <div class="service-tags">
+          <span class="tag">SB Qualified</span>
+          <span class="tag">NAICS 561310</span>
+          <span class="tag">SAM Registered</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients-section" id="clients">
+  <div class="section-inner">
+    <div class="clients-intro">
+      <div>
+        <div class="section-label"><span class="section-label-num">03</span> — Who We Serve</div>
+        <h2 class="section-title">Prime contractors <em>building</em> tomorrow's federal infrastructure.</h2>
+      </div>
+      <div>
+        <p class="section-body">
+          We partner with the systems integrators, defense contractors, and AI-native federal vendors that are winning and executing the most technically demanding contracts in the government space.
+        </p>
+      </div>
+    </div>
+    <div class="prime-list">
+      <div class="prime-card fade-up">
+        <div class="prime-name">Booz Allen Hamilton</div>
+        <div class="prime-focus">Defense Analytics · AI Strategy</div>
+        <div class="prime-badge">Target Partner</div>
+      </div>
+      <div class="prime-card fade-up delay-1">
+        <div class="prime-name">Leidos</div>
+        <div class="prime-focus">Intelligence · Defense Systems</div>
+        <div class="prime-badge">Target Partner</div>
+      </div>
+      <div class="prime-card fade-up delay-2">
+        <div class="prime-name">SAIC</div>
+        <div class="prime-focus">IT Modernization · Cloud</div>
+        <div class="prime-badge">Target Partner</div>
+      </div>
+      <div class="prime-card fade-up delay-3">
+        <div class="prime-name">Palantir Federal</div>
+        <div class="prime-focus">AI Platforms · Data Ops</div>
+        <div class="prime-badge">Target Partner</div>
+      </div>
+      <div class="prime-card fade-up">
+        <div class="prime-name">Accenture Federal</div>
+        <div class="prime-focus">Digital Transformation</div>
+        <div class="prime-badge">Target Partner</div>
+      </div>
+      <div class="prime-card fade-up delay-1">
+        <div class="prime-name">General Dynamics IT</div>
+        <div class="prime-focus">Enterprise IT · Cybersecurity</div>
+        <div class="prime-badge">Target Partner</div>
+      </div>
+      <div class="prime-card fade-up delay-2">
+        <div class="prime-name">Peraton</div>
+        <div class="prime-focus">National Security · Space</div>
+        <div class="prime-badge">Target Partner</div>
+      </div>
+      <div class="prime-card fade-up delay-3">
+        <div class="prime-name">ManTech</div>
+        <div class="prime-focus">Cyber · Software Development</div>
+        <div class="prime-badge">Target Partner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDGE -->
+<section class="edge-section" id="edge">
+  <div class="section-inner">
+    <div class="edge-grid">
+      <div class="edge-left">
+        <div class="section-label"><span class="section-label-num">04</span> — Our Edge</div>
+        <h2 class="section-title">Why primes choose <em>Declarative.</em></h2>
+        <div class="rule"></div>
+        <p class="section-body">
+          We sit at the intersection of the government contracting world and Silicon Valley's AI talent ecosystem — a combination that very few recruiting firms can claim.
+        </p>
+        <div class="edge-metrics">
+          <div class="edge-metric">
+            <div class="edge-metric-num">AI/ML</div>
+            <div class="edge-metric-label">Exclusive focus on technical roles primes need most</div>
+          </div>
+          <div class="edge-metric">
+            <div class="edge-metric-num">48hr</div>
+            <div class="edge-metric-label">Typical time to first qualified candidate submission</div>
+          </div>
+          <div class="edge-metric">
+            <div class="edge-metric-num">SB</div>
+            <div class="edge-metric-label">Small Business status for subcontracting plan credits</div>
+          </div>
+          <div class="edge-metric">
+            <div class="edge-metric-num">Vetted</div>
+            <div class="edge-metric-label">Clearance-eligible candidate screening built in</div>
+          </div>
+        </div>
+      </div>
+      <div class="edge-right fade-up">
+        <div class="edge-item">
+          <div class="edge-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+          <div>
+            <div class="edge-item-title">Deep AI/ML talent network</div>
+            <div class="edge-item-desc">Years of placing ML engineers at Sequoia and General Catalyst-backed companies means access to a vetted, high-caliber technical network — now pointed at federal missions.</div>
+          </div>
+        </div>
+        <div class="edge-item">
+          <div class="edge-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+          <div>
+            <div class="edge-item-title">Clearance-aware sourcing</div>
+            <div class="edge-item-desc">We screen for clearance eligibility from the first outreach. No wasted cycles on candidates who can't pass. We understand the background check reality of government work.</div>
+          </div>
+        </div>
+        <div class="edge-item">
+          <div class="edge-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+          <div>
+            <div class="edge-item-title">Contract-timeline urgency</div>
+            <div class="edge-item-desc">We move at the pace contracts demand. When you win and need to staff within 30 days, we're not still writing job descriptions.</div>
+          </div>
+        </div>
+        <div class="edge-item">
+          <div class="edge-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+          <div>
+            <div class="edge-item-title">Small business flexibility</div>
+            <div class="edge-item-desc">As a registered small business, we plug directly into your subcontracting plan as a qualified vendor — helping you hit SBA targets without compromising delivery quality.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITY -->
+<section class="cap-section" id="capability">
+  <div class="section-inner">
+    <div class="cap-inner">
+      <div>
+        <div class="cap-tag">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Capability Statement
+        </div>
+        <h2 class="cap-title">Everything a prime needs<br>to vet and onboard us.</h2>
+        <p class="cap-body">
+          Our capability statement includes our NAICS codes, UEI number, CAGE code, core competencies, and past performance. The document primes use to start procurement conversations — ready when you are.
+        </p>
+        <p class="cap-body" style="margin-top: 1rem;">
+          Not ready to download? Get in touch and we'll walk you through the partnership model that fits your contract structure.
+        </p>
+      </div>
+      <div class="cap-doc fade-up">
+        <div class="cap-doc-header">
+          <div class="cap-doc-icon">
+            <svg viewBox="0 0 16 16"><path d="M4 2h6l4 4v10H4V2z"/><path d="M10 2v4h4"/><path d="M6 9h4M6 12h4"/></svg>
+          </div>
+          <div>
+            <div class="cap-doc-name">Declarative Recruitment</div>
+            <div class="cap-doc-sub">Capability Statement · 2025</div>
+          </div>
+        </div>
+        <div class="cap-doc-rows">
+          <div class="cap-doc-row">
+            <span class="cap-doc-row-key">Entity Type</span>
+            <span class="cap-doc-row-val">Small Business</span>
+          </div>
+          <div class="cap-doc-row">
+            <span class="cap-doc-row-key">Primary NAICS</span>
+            <span class="cap-doc-row-val">561310</span>
+          </div>
+          <div class="cap-doc-row">
+            <span class="cap-doc-row-key">SAM.gov</span>
+            <span class="cap-doc-row-val" style="color: var(--teal); font-size: 11px;">Registered</span>
+          </div>
+          <div class="cap-doc-row">
+            <span class="cap-doc-row-key">Core Focus</span>
+            <span class="cap-doc-row-val">AI/ML · SWE · Data</span>
+          </div>
+          <div class="cap-doc-row">
+            <span class="cap-doc-row-key">Clients</span>
+            <span class="cap-doc-row-val">Federal Prime Contractors</span>
+          </div>
+        </div>
+        <a href="#contact" class="cap-doc-cta">
+          Request Capability Statement
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label"><span class="section-label-num">06</span> — Contact</div>
+        <h2 class="section-title">Let's discuss your <em>hiring needs.</em></h2>
+        <div class="rule"></div>
+        <p class="section-body">
+          Whether you've just won a contract and need to staff quickly, or you're building a subcontracting vendor list — we're ready to talk. No long intake forms. Just a direct conversation.
+        </p>
+        <div class="contact-channels">
+          <a href="mailto:hello@declarativerecruitment.com" class="contact-channel">
+            <div class="contact-channel-icon">
+              <svg viewBox="0 0 16 16"><path d="M2 4h12v9H2V4z"/><path d="M2 4l6 5 6-5"/></svg>
+            </div>
+            <div>
+              <div class="contact-channel-label">Email</div>
+              <div class="contact-channel-val">hello@declarativerecruitment.com</div>
+            </div>
+          </a>
+          <a href="https://linkedin.com" class="contact-channel" target="_blank">
+            <div class="contact-channel-icon">
+              <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 7v4M5 5v.5M8 11V8.5C8 7.7 8.7 7 9.5 7s1.5.7 1.5 1.5V11"/></svg>
+            </div>
+            <div>
+              <div class="contact-channel-label">LinkedIn</div>
+              <div class="contact-channel-val">Declarative Recruitment</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-form fade-up">
+        <div class="form-title">Start a conversation</div>
+        <div class="form-sub">We typically respond within one business day.</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-input" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-input" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Company</label>
+          <input type="text" class="form-input" placeholder="Prime Contractor Inc.">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Work Email</label>
+          <input type="email" class="form-input" placeholder="jane@company.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">What are you looking for?</label>
+          <select class="form-select form-input">
+            <option value="" disabled selected>Select an option</option>
+            <option>Contract Staffing — Active Contract</option>
+            <option>Direct Hire Placement</option>
+            <option>Subcontract Partnership</option>
+            <option>Capability Statement Request</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message (Optional)</label>
+          <textarea class="form-textarea" placeholder="Tell us about the role or contract..."></textarea>
+        </div>
+        <button class="form-submit">
+          Send Message
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5h10M7.5 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">Declarative Recruitment</div>
+      <div class="footer-brand-desc">Federal technical recruiting for prime contractors. AI/ML and software engineering talent, delivered with precision.</div>
+      <div class="footer-reg">
+        <div class="footer-reg-item"><span class="footer-reg-dot"></span>SAM.gov Registered</div>
+        <div class="footer-reg-item"><span class="footer-reg-dot"></span>NAICS 561310</div>
+        <div class="footer-reg-item"><span class="footer-reg-dot"></span>Small Business</div>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Contract Staffing</a></li>
+        <li><a href="#services">Direct Hire</a></li>
+        <li><a href="#services">Subcontract Partnership</a></li>
+        <li><a href="#capability">Capability Statement</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Specialties</div>
+      <ul class="footer-links">
+        <li><a href="#">AI / ML Engineers</a></li>
+        <li><a href="#">Software Engineers</a></li>
+        <li><a href="#">Data Scientists</a></li>
+        <li><a href="#">DevSecOps</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#clients">Who We Serve</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://transformertalent.com">Transformer Talent</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Declarative Recruitment. All rights reserved.</div>
+    <div class="footer-parent">A sister company of Transformer Talent</div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
