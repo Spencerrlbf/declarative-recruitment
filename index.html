@@ -1827,30 +1827,33 @@
           </a>
         </div>
       </div>
-      <div class="contact-form fade-up">
+      <form class="contact-form fade-up" action="https://formsubmit.co/hello@declarativerecruitment.com" method="POST">
+        <input type="hidden" name="_subject" value="New Declarative Recruitment inquiry">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-title">Start a conversation</div>
         <div class="form-sub">Tell us what you are staffing, where the role sits, and how quickly you need qualified candidates.</div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">First Name</label>
-            <input type="text" class="form-input" placeholder="Jane">
+            <label class="form-label" for="first-name">First Name</label>
+            <input id="first-name" name="first_name" type="text" class="form-input" placeholder="Jane" autocomplete="given-name" required>
           </div>
           <div class="form-group">
-            <label class="form-label">Last Name</label>
-            <input type="text" class="form-input" placeholder="Smith">
+            <label class="form-label" for="last-name">Last Name</label>
+            <input id="last-name" name="last_name" type="text" class="form-input" placeholder="Smith" autocomplete="family-name" required>
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Company</label>
-          <input type="text" class="form-input" placeholder="Prime Contractor Inc.">
+          <label class="form-label" for="company">Company</label>
+          <input id="company" name="company" type="text" class="form-input" placeholder="Prime Contractor Inc." autocomplete="organization" required>
         </div>
         <div class="form-group">
-          <label class="form-label">Work Email</label>
-          <input type="email" class="form-input" placeholder="jane@company.com">
+          <label class="form-label" for="email">Work Email</label>
+          <input id="email" name="email" type="email" class="form-input" placeholder="jane@company.com" autocomplete="email" required>
         </div>
         <div class="form-group">
-          <label class="form-label">Organization Type</label>
-          <select class="form-select form-input">
+          <label class="form-label" for="organization-type">Organization Type</label>
+          <select id="organization-type" name="organization_type" class="form-select form-input" required>
             <option value="" disabled selected>Select organization type</option>
             <option>Prime Contractor</option>
             <option>Federal Technology Vendor</option>
@@ -1862,8 +1865,8 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">What are you looking for?</label>
-          <select class="form-select form-input">
+          <label class="form-label" for="inquiry-type">What are you looking for?</label>
+          <select id="inquiry-type" name="inquiry_type" class="form-select form-input" required>
             <option value="" disabled selected>Select an option</option>
             <option>Contract Staffing — Active Program</option>
             <option>Direct Hire Placement</option>
@@ -1874,8 +1877,8 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">Role Type</label>
-          <select class="form-select form-input">
+          <label class="form-label" for="role-type">Role Type</label>
+          <select id="role-type" name="role_type" class="form-select form-input" required>
             <option value="" disabled selected>Select role type</option>
             <option>AI/ML</option>
             <option>Software Engineering</option>
@@ -1889,8 +1892,8 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Clearance Requirement</label>
-            <select class="form-select form-input">
+            <label class="form-label" for="clearance-requirement">Clearance Requirement</label>
+            <select id="clearance-requirement" name="clearance_requirement" class="form-select form-input" required>
               <option value="" disabled selected>Select clearance</option>
               <option>None</option>
               <option>Public Trust</option>
@@ -1901,8 +1904,8 @@
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">Hiring Timeline</label>
-            <select class="form-select form-input">
+            <label class="form-label" for="hiring-timeline">Hiring Timeline</label>
+            <select id="hiring-timeline" name="hiring_timeline" class="form-select form-input" required>
               <option value="" disabled selected>Select timeline</option>
               <option>Immediate</option>
               <option>2-4 Weeks</option>
@@ -1913,14 +1916,14 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Message</label>
-          <textarea class="form-textarea" placeholder="Tell us about the role, contract, location, clearance needs, or hiring challenge..."></textarea>
+          <label class="form-label" for="message">Message</label>
+          <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about the role, contract, location, clearance needs, or hiring challenge..." required></textarea>
         </div>
-        <button class="form-submit">
+        <button type="submit" class="form-submit">
           Discuss Recruiting Support
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5h10M7.5 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-      </div>
+      </form>
     </div>
   </div>
 </section>
