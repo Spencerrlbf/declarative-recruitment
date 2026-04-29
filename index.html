@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Declarative Recruitment — Federal Talent Intelligence</title>
+<title>Declarative Recruitment — Federal Technical Recruiting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -86,7 +86,7 @@
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 1.75rem;
     list-style: none;
   }
 
@@ -175,13 +175,13 @@
 
   .hero-headline {
     font-family: var(--serif);
-    font-size: clamp(52px, 7vw, 90px);
+    font-size: clamp(44px, 6vw, 76px);
     font-weight: 300;
     line-height: 1.05;
     letter-spacing: -0.01em;
     color: var(--text);
     margin-bottom: 2rem;
-    max-width: 780px;
+    max-width: 900px;
   }
 
   .hero-headline em {
@@ -452,7 +452,7 @@
 
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1px;
   }
 
@@ -583,6 +583,56 @@
     width: fit-content;
   }
 
+  .buyer-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-bottom: 3rem;
+  }
+
+  .buyer-card {
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+    padding: 1.75rem 1.5rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .buyer-card:hover {
+    border-color: var(--border-2);
+    background: var(--navy-3);
+  }
+
+  .buyer-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.625rem;
+  }
+
+  .buyer-need {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+
+  .program-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .program-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-2);
+    letter-spacing: 0.04em;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--border);
+    background: var(--navy-2);
+    border-radius: 4px;
+  }
+
   /* ── EDGE ── */
   .edge-section {
     background: var(--navy-2);
@@ -683,6 +733,79 @@
     line-height: 1.6;
   }
 
+  /* ── PROCESS ── */
+  .process-section {
+    background: var(--navy);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .process-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    align-items: end;
+  }
+
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 120px 1fr 280px;
+    gap: 2rem;
+    align-items: start;
+    padding: 1.75rem;
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+  }
+
+  .process-step:first-child { border-radius: 8px 8px 0 0; }
+  .process-step:last-child { border-radius: 0 0 8px 8px; }
+
+  .process-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--blue);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .process-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.375rem;
+  }
+
+  .process-desc,
+  .process-output {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+
+  .process-output {
+    color: var(--text-3);
+    border-left: 1px solid var(--border);
+    padding-left: 1rem;
+  }
+
+  .process-output strong {
+    display: block;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+
   /* ── CAPABILITY ── */
   .cap-section {
     background: linear-gradient(135deg, var(--navy) 0%, #0c1232 100%);
@@ -730,7 +853,7 @@
   }
 
   .cap-doc {
-    min-width: 260px;
+    min-width: 360px;
     background: var(--navy-2);
     border: 1px solid var(--border-2);
     border-radius: 10px;
@@ -789,7 +912,8 @@
   .cap-doc-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    gap: 1.25rem;
   }
 
   .cap-doc-row-key {
@@ -804,6 +928,9 @@
     font-size: 12px;
     color: var(--text-2);
     font-weight: 400;
+    line-height: 1.45;
+    max-width: 210px;
+    text-align: right;
   }
 
   .cap-doc-cta {
@@ -1126,19 +1253,60 @@
     margin: 1.5rem 0;
   }
 
+  @media (max-width: 1200px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .hero {
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+    }
+    .hero-headline { max-width: 840px; }
+    .hero-stats {
+      position: relative;
+      right: auto;
+      top: auto;
+      transform: none;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      width: 100%;
+      max-width: 1100px;
+      margin: 3rem auto 0;
+    }
+    .hero-stat {
+      min-width: 0;
+      padding: 1.1rem 1.25rem;
+    }
+    .hero-stat:first-child { border-radius: 8px 0 0 8px; }
+    .hero-stat:last-child { border-radius: 0 8px 8px 0; }
+    .hero-stat-num { font-size: 28px; }
+  }
+
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
     section { padding: 5rem 1.5rem; }
     .hero { padding: 8rem 1.5rem 5rem; }
     .hero-stats { display: none; }
-    .about-grid, .services-header, .edge-grid, .cap-inner, .contact-grid, .clients-intro { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-grid, .services-header, .edge-grid, .cap-inner, .contact-grid, .clients-intro, .process-header { grid-template-columns: 1fr; gap: 2.5rem; }
     .services-grid { grid-template-columns: 1fr; }
-    .prime-list { grid-template-columns: repeat(2, 1fr); }
+    .prime-list, .buyer-list { grid-template-columns: repeat(2, 1fr); }
     .edge-metrics { grid-template-columns: 1fr 1fr; }
+    .process-step { grid-template-columns: 1fr; gap: 0.75rem; }
+    .process-output { border-left: 0; padding-left: 0; }
+    .cap-doc { min-width: 0; width: 100%; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
     footer { padding: 3rem 1.5rem; }
     .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .hero-actions { align-items: stretch; flex-direction: column; }
+    .btn-primary, .btn-ghost { justify-content: center; }
+    .buyer-list, .prime-list, .edge-metrics { grid-template-columns: 1fr; }
+    .cap-doc-row { flex-direction: column; gap: 0.25rem; }
+    .cap-doc-row-val { max-width: none; text-align: left; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-bottom { align-items: flex-start; flex-direction: column; gap: 0.75rem; }
   }
 </style>
 </head>
@@ -1154,10 +1322,11 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#clients">Who We Serve</a></li>
     <li><a href="#edge">Why Us</a></li>
+    <li><a href="#process">Process</a></li>
     <li><a href="#capability">Capability</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Get in Touch</a>
+  <a href="#contact" class="nav-cta">Discuss a Search</a>
 </nav>
 
 <!-- HERO -->
@@ -1165,39 +1334,39 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-inner">
-    <div class="hero-label">Federal Technical Recruiting</div>
+    <div class="hero-label">Federal Technical Recruiting for Prime Contractors</div>
     <h1 class="hero-headline">
-      The talent that<br><em>executes</em> the mission.
+      AI, software, and data talent<br><em>for federal programs</em> that cannot miss staffing deadlines.
     </h1>
     <p class="hero-sub">
-      Declarative Recruitment places elite AI/ML engineers and software developers with prime contractors delivering on federal and defense contracts. Clearance-aware. Precision-driven.
+      Declarative Recruitment helps prime contractors, federal technology vendors, and program teams staff contract-critical AI/ML, software engineering, data, cloud, and DevSecOps roles. We combine deep technical recruiting networks with clearance-aware screening and small-business subcontracting readiness.
     </p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">
-        Start a Search
+        Discuss an Active Search
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a href="#capability" class="btn-ghost">
-        View Capability Statement
+        Request Capability Statement
       </a>
     </div>
   </div>
   <div class="hero-stats">
     <div class="hero-stat">
       <div class="hero-stat-num">AI/ML</div>
-      <div class="hero-stat-label">Core Specialty</div>
+      <div class="hero-stat-label">SWE · Data Focus</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num">SWE</div>
-      <div class="hero-stat-label">Software Engineers</div>
+      <div class="hero-stat-num">Federal</div>
+      <div class="hero-stat-label">Contract-Critical Hiring</div>
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num">SB</div>
-      <div class="hero-stat-label">Small Business</div>
+      <div class="hero-stat-label">SAM.gov Registered</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num">561310</div>
-      <div class="hero-stat-label">NAICS Code</div>
+      <div class="hero-stat-num">Aware</div>
+      <div class="hero-stat-label">Clearance Screening</div>
     </div>
   </div>
 </section>
@@ -1208,19 +1377,27 @@
     <span class="ticker-item"><span class="ticker-dot"></span>AI / Machine Learning Engineers</span>
     <span class="ticker-item"><span class="ticker-dot"></span>Software Engineers</span>
     <span class="ticker-item"><span class="ticker-dot"></span>Data Scientists</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>ML Infrastructure</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Clearance-Eligible Candidates</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Defense Tech Specialists</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Data Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ML Infrastructure Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>DevSecOps Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Cloud Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Platform Engineers</span>
     <span class="ticker-item"><span class="ticker-dot"></span>Federal Systems Engineers</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>DevSecOps</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Clearance-Aware Candidate Screening</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Defense Tech Specialists</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Contract-Critical Technical Talent</span>
     <span class="ticker-item"><span class="ticker-dot"></span>AI / Machine Learning Engineers</span>
     <span class="ticker-item"><span class="ticker-dot"></span>Software Engineers</span>
     <span class="ticker-item"><span class="ticker-dot"></span>Data Scientists</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>ML Infrastructure</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Clearance-Eligible Candidates</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Defense Tech Specialists</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Data Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ML Infrastructure Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>DevSecOps Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Cloud Engineers</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Platform Engineers</span>
     <span class="ticker-item"><span class="ticker-dot"></span>Federal Systems Engineers</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>DevSecOps</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Clearance-Aware Candidate Screening</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Defense Tech Specialists</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Contract-Critical Technical Talent</span>
   </div>
 </div>
 
@@ -1230,13 +1407,19 @@
     <div class="about-grid">
       <div>
         <div class="section-label"><span class="section-label-num">01</span> — Who We Are</div>
-        <h2 class="section-title">A specialist firm built for the <em>federal stack.</em></h2>
+        <h2 class="section-title">A technical recruiting partner built for <em>federal program delivery.</em></h2>
         <div class="rule"></div>
         <p class="section-body">
-          Declarative Recruitment was purpose-built to serve prime contractors executing federal and defense technology contracts. We don't generalize. We place AI/ML engineers, software developers, and data scientists into roles where precision and security awareness are non-negotiable.
+          Declarative Recruitment specializes in AI/ML, software engineering, data, cloud, and DevSecOps recruiting for organizations delivering federal and defense technology programs.
         </p>
         <p class="section-body" style="margin-top: 1rem;">
-          As a certified small business, we fulfill subcontracting requirements while delivering the caliber of talent that moves contracts forward.
+          We support prime contractors, federal technology vendors, HR teams, engineering leaders, and program managers who need technically credible candidates on contract-driven timelines.
+        </p>
+        <p class="section-body" style="margin-top: 1rem;">
+          Our work is focused on roles where generic recruiting is not enough: hard technical requirements, security-sensitive environments, location constraints, clearance considerations, and high delivery expectations.
+        </p>
+        <p class="section-body" style="margin-top: 1rem;">
+          As a SAM.gov registered small business, Declarative Recruitment can support prime contractors' subcontracting strategies while delivering focused technical recruiting for the roles that are hardest to fill.
         </p>
       </div>
       <div class="about-right">
@@ -1247,7 +1430,7 @@
             </div>
             <div>
               <div class="pillar-title">Specialist, not generalist</div>
-              <div class="pillar-desc">We focus exclusively on AI/ML and software engineering talent — the exact profiles primes struggle most to hire on contract timelines.</div>
+              <div class="pillar-desc">We focus on AI/ML, software engineering, data, cloud, and DevSecOps roles — the technical profiles federal contractors struggle to hire quickly and accurately.</div>
             </div>
           </div>
           <div class="pillar">
@@ -1255,8 +1438,8 @@
               <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M8 5v6"/></svg>
             </div>
             <div>
-              <div class="pillar-title">Small business qualified</div>
-              <div class="pillar-desc">NAICS 561310 registered. We help primes fulfill small business subcontracting requirements without sacrificing quality.</div>
+              <div class="pillar-title">Built for contract timelines</div>
+              <div class="pillar-desc">We understand post-award ramp-ups, active program staffing, surge hiring, recompete transitions, and the pressure to submit qualified candidates quickly.</div>
             </div>
           </div>
           <div class="pillar">
@@ -1264,8 +1447,26 @@
               <svg viewBox="0 0 16 16"><path d="M8 1v14M1 8h14"/></svg>
             </div>
             <div>
-              <div class="pillar-title">Network depth in the right places</div>
-              <div class="pillar-desc">Built from years placing AI/ML engineers at tier-1 funded companies — talent that is elite, vetted, and increasingly interested in mission-driven work.</div>
+              <div class="pillar-title">Clearance-aware from the start</div>
+              <div class="pillar-desc">We screen early for current clearance status, citizenship requirements, work authorization, geography, availability, compensation alignment, and willingness to support federal mission work.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 16 16"><path d="M3 8l3 3 7-7"/><path d="M2 2h12v12H2z"/></svg>
+            </div>
+            <div>
+              <div class="pillar-title">Small-business ready</div>
+              <div class="pillar-desc">As a SAM.gov registered small business, we can support subcontracting strategies while operating as a serious technical recruiting partner — not a checkbox vendor.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 16 16"><path d="M2 12c3-7 9-7 12 0"/><circle cx="8" cy="6" r="3"/></svg>
+            </div>
+            <div>
+              <div class="pillar-title">Commercial AI network depth</div>
+              <div class="pillar-desc">Our network includes AI/ML, software, data, and infrastructure talent from venture-backed, research-heavy, and production engineering environments.</div>
             </div>
           </div>
         </div>
@@ -1280,11 +1481,11 @@
     <div class="services-header">
       <div>
         <div class="section-label"><span class="section-label-num">02</span> — Services</div>
-        <h2 class="section-title">What we do for <em>prime contractors.</em></h2>
+        <h2 class="section-title">Recruiting support for <em>contract-critical technical roles.</em></h2>
       </div>
       <div>
         <p class="section-body">
-          Whether you need to staff up quickly after a contract award or fulfill your small business subcontracting plan, we have a model that works within your procurement process.
+          Whether you are staffing an active contract, preparing for a post-award ramp-up, adding capacity to your internal talent team, or looking for a small-business recruiting partner, Declarative Recruitment supports the full search process from intake to candidate delivery.
         </p>
       </div>
     </div>
@@ -1292,31 +1493,46 @@
       <div class="service-card fade-up">
         <div class="service-num">SVC — 01</div>
         <div class="service-title">Contract Staffing</div>
-        <div class="service-desc">Rapid placement of engineers and data scientists on active contracts. We move fast — built for the urgency that comes after a contract award.</div>
+        <div class="service-desc">For active programs, surge needs, recompete transitions, and post-award ramp-ups where technical roles need to be filled quickly. We source, screen, and deliver qualified technical candidates aligned to your program requirements, location needs, compensation range, and security constraints.</div>
         <div class="service-tags">
           <span class="tag">W-2 & 1099</span>
-          <span class="tag">Contract to Hire</span>
-          <span class="tag">Rapid Deploy</span>
+          <span class="tag">Contract-to-Hire</span>
+          <span class="tag">Rapid Slate Delivery</span>
+          <span class="tag">Clearance-Aware</span>
         </div>
       </div>
       <div class="service-card fade-up delay-1">
         <div class="service-num">SVC — 02</div>
         <div class="service-title">Direct Hire Placement</div>
-        <div class="service-desc">Permanent placement for senior technical roles. We source, vet, and deliver candidates who understand the compliance and clearance landscape.</div>
+        <div class="service-desc">Permanent search for senior technical roles across AI/ML, software engineering, data platforms, cloud infrastructure, and DevSecOps. We help federal contractors and technology vendors hire the engineers, technical leads, and individual contributors needed to support long-term program delivery.</div>
         <div class="service-tags">
           <span class="tag">Senior IC</span>
           <span class="tag">Staff Engineer</span>
           <span class="tag">Tech Lead</span>
+          <span class="tag">ML Engineer</span>
+          <span class="tag">Data Platform</span>
         </div>
       </div>
       <div class="service-card fade-up delay-2">
         <div class="service-num">SVC — 03</div>
         <div class="service-title">Subcontract Partnership</div>
-        <div class="service-desc">Serve as a registered small business subcontractor on your staffing spend. We help you meet SBA subcontracting plan requirements with legitimate, high-quality delivery.</div>
+        <div class="service-desc">A small-business recruiting partner for prime contractors that need credible technical hiring support within a subcontracting or vendor relationship. We help primes add specialized recruiting capacity while supporting small-business participation goals and vendor diversity strategies.</div>
         <div class="service-tags">
-          <span class="tag">SB Qualified</span>
-          <span class="tag">NAICS 561310</span>
           <span class="tag">SAM Registered</span>
+          <span class="tag">Small Business</span>
+          <span class="tag">Vendor Ready</span>
+          <span class="tag">Capability Statement</span>
+        </div>
+      </div>
+      <div class="service-card fade-up delay-3">
+        <div class="service-num">SVC — 04</div>
+        <div class="service-title">Proposal / Capture Recruiting Support</div>
+        <div class="service-desc">Support for capture, proposal, and pre-award teams that need access to qualified technical talent pipelines before or immediately after contract award. We can help identify likely candidate profiles, build early talent pipelines, and support staffing strategy for technical labor categories.</div>
+        <div class="service-tags">
+          <span class="tag">Pre-Award</span>
+          <span class="tag">Post-Award</span>
+          <span class="tag">Talent Mapping</span>
+          <span class="tag">Labor Categories</span>
         </div>
       </div>
     </div>
@@ -1329,55 +1545,53 @@
     <div class="clients-intro">
       <div>
         <div class="section-label"><span class="section-label-num">03</span> — Who We Serve</div>
-        <h2 class="section-title">Prime contractors <em>building</em> tomorrow's federal infrastructure.</h2>
+        <h2 class="section-title">Built for the teams responsible for <em>federal technical delivery.</em></h2>
       </div>
       <div>
         <p class="section-body">
-          We partner with the systems integrators, defense contractors, and AI-native federal vendors that are winning and executing the most technically demanding contracts in the government space.
+          We partner with organizations delivering software, AI, data, cloud, cyber, and modernization work across federal and defense programs. Our best-fit partners are teams with urgent technical hiring needs, clear program requirements, and a low tolerance for generic resumes.
         </p>
       </div>
     </div>
-    <div class="prime-list">
-      <div class="prime-card fade-up">
-        <div class="prime-name">TBC</div>
-        <div class="prime-focus">Defense Analytics · AI Strategy</div>
-        <div class="prime-badge">Target Partner</div>
+    <div class="buyer-list">
+      <div class="buyer-card fade-up">
+        <div class="buyer-name">Prime Contractors</div>
+        <div class="buyer-need">A reliable small-business recruiting partner for hard-to-fill technical roles on active federal programs.</div>
       </div>
-      <div class="prime-card fade-up delay-1">
-        <div class="prime-name">TBC</div>
-        <div class="prime-focus">Intelligence · Defense Systems</div>
-        <div class="prime-badge">Target Partner</div>
+      <div class="buyer-card fade-up delay-1">
+        <div class="buyer-name">Engineering Managers</div>
+        <div class="buyer-need">Technically credible candidates who can contribute quickly and understand delivery expectations.</div>
       </div>
-      <div class="prime-card fade-up delay-2">
-        <div class="prime-name">TBC</div>
-        <div class="prime-focus">IT Modernization · Cloud</div>
-        <div class="prime-badge">Target Partner</div>
+      <div class="buyer-card fade-up delay-2">
+        <div class="buyer-name">Program Managers</div>
+        <div class="buyer-need">Staffing support aligned to contract timelines, labor categories, locations, and program constraints.</div>
       </div>
-      <div class="prime-card fade-up delay-3">
-        <div class="prime-name">TBC</div>
-        <div class="prime-focus">AI Platforms · Data Ops</div>
-        <div class="prime-badge">Target Partner</div>
+      <div class="buyer-card fade-up delay-3">
+        <div class="buyer-name">HR / Talent Teams</div>
+        <div class="buyer-need">Extra search capacity for niche AI, software, data, cloud, and DevSecOps roles.</div>
       </div>
-      <div class="prime-card fade-up">
-        <div class="prime-name">TBC</div>
-        <div class="prime-focus">Digital Transformation</div>
-        <div class="prime-badge">Target Partner</div>
+      <div class="buyer-card fade-up">
+        <div class="buyer-name">Capture / BD Teams</div>
+        <div class="buyer-need">Recruiting support for proposals, talent mapping, and post-award ramp-up planning.</div>
       </div>
-      <div class="prime-card fade-up delay-1">
-        <div class="prime-name">TBC</div>
-        <div class="prime-focus">Enterprise IT · Cybersecurity</div>
-        <div class="prime-badge">Target Partner</div>
+      <div class="buyer-card fade-up delay-1">
+        <div class="buyer-name">Small-Business Liaison Teams</div>
+        <div class="buyer-need">A legitimate small-business vendor with technical recruiting depth and procurement-ready documentation.</div>
       </div>
-      <div class="prime-card fade-up delay-2">
-        <div class="prime-name">TBC</div>
-        <div class="prime-focus">National Security · Space</div>
-        <div class="prime-badge">Target Partner</div>
+      <div class="buyer-card fade-up delay-2">
+        <div class="buyer-name">Federal Technology Vendors</div>
+        <div class="buyer-need">Access to commercial AI/ML and software talent for government-focused delivery teams.</div>
       </div>
-      <div class="prime-card fade-up delay-3">
-        <div class="prime-name">TBC</div>
-        <div class="prime-focus">Cyber · Software Development</div>
-        <div class="prime-badge">Target Partner</div>
-      </div>
+    </div>
+    <div class="program-tags fade-up delay-3">
+      <span class="program-tag">Defense technology programs</span>
+      <span class="program-tag">Federal IT modernization</span>
+      <span class="program-tag">AI and data platform initiatives</span>
+      <span class="program-tag">Cloud and infrastructure programs</span>
+      <span class="program-tag">Cybersecurity and DevSecOps teams</span>
+      <span class="program-tag">Intelligence and national security programs</span>
+      <span class="program-tag">Civilian agency technology modernization</span>
+      <span class="program-tag">Software delivery and platform engineering teams</span>
     </div>
   </div>
 </section>
@@ -1388,27 +1602,30 @@
     <div class="edge-grid">
       <div class="edge-left">
         <div class="section-label"><span class="section-label-num">04</span> — Our Edge</div>
-        <h2 class="section-title">Why primes choose <em>Declarative.</em></h2>
+        <h2 class="section-title">Technical search depth with <em>federal-market discipline.</em></h2>
         <div class="rule"></div>
         <p class="section-body">
-          We sit at the intersection of the government contracting world and Silicon Valley's AI talent ecosystem — a combination that very few recruiting firms can claim.
+          Declarative Recruitment sits at the intersection of commercial AI/ML recruiting and federal program staffing.
+        </p>
+        <p class="section-body" style="margin-top: 1rem;">
+          That means we understand both sides of the hiring problem: the technical bar engineering teams need, and the compliance-aware, timeline-driven reality federal contractors operate within.
         </p>
         <div class="edge-metrics">
           <div class="edge-metric">
             <div class="edge-metric-num">AI/ML</div>
-            <div class="edge-metric-label">Exclusive focus on technical roles primes need most</div>
+            <div class="edge-metric-label">SWE · Data roles federal contractors struggle to fill</div>
           </div>
           <div class="edge-metric">
-            <div class="edge-metric-num">48hr</div>
-            <div class="edge-metric-label">Typical time to first qualified candidate submission</div>
+            <div class="edge-metric-num">Aware</div>
+            <div class="edge-metric-label">Security, citizenship, location, and work authorization screening</div>
           </div>
           <div class="edge-metric">
             <div class="edge-metric-num">SB</div>
-            <div class="edge-metric-label">Small Business status for subcontracting plan credits</div>
+            <div class="edge-metric-label">SAM.gov registered for prime-contractor vendor conversations</div>
           </div>
           <div class="edge-metric">
-            <div class="edge-metric-num">Vetted</div>
-            <div class="edge-metric-label">Clearance-eligible candidate screening built in</div>
+            <div class="edge-metric-num">Slate</div>
+            <div class="edge-metric-label">Focused candidate delivery around role requirements</div>
           </div>
         </div>
       </div>
@@ -1416,31 +1633,100 @@
         <div class="edge-item">
           <div class="edge-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
           <div>
-            <div class="edge-item-title">Deep AI/ML talent network</div>
-            <div class="edge-item-desc">Years of placing ML engineers at Sequoia and General Catalyst-backed companies means access to a vetted, high-caliber technical network — now pointed at federal missions.</div>
+            <div class="edge-item-title">Commercial AI/ML talent network</div>
+            <div class="edge-item-desc">We bring modern AI/ML, software, and data recruiting experience into the federal market, reaching candidates with production engineering, applied ML, infrastructure, and research-heavy backgrounds.</div>
           </div>
         </div>
         <div class="edge-item">
           <div class="edge-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
           <div>
             <div class="edge-item-title">Clearance-aware sourcing</div>
-            <div class="edge-item-desc">We screen for clearance eligibility from the first outreach. No wasted cycles on candidates who can't pass. We understand the background check reality of government work.</div>
+            <div class="edge-item-desc">We screen early for current clearance status, citizenship requirements, work authorization, geography, availability, compensation alignment, and willingness to support federal mission work.</div>
           </div>
         </div>
         <div class="edge-item">
           <div class="edge-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
           <div>
             <div class="edge-item-title">Contract-timeline urgency</div>
-            <div class="edge-item-desc">We move at the pace contracts demand. When you win and need to staff within 30 days, we're not still writing job descriptions.</div>
+            <div class="edge-item-desc">We understand the pressure of active program staffing, post-award ramp-up, and hard-to-fill labor categories. The goal is not more resumes. The goal is qualified candidates your team can act on.</div>
           </div>
         </div>
         <div class="edge-item">
           <div class="edge-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
           <div>
             <div class="edge-item-title">Small business flexibility</div>
-            <div class="edge-item-desc">As a registered small business, we plug directly into your subcontracting plan as a qualified vendor — helping you hit SBA targets without compromising delivery quality.</div>
+            <div class="edge-item-desc">We support small-business subcontracting strategies while operating as a real technical recruiting partner — not just a vendor checkbox.</div>
           </div>
         </div>
+        <div class="edge-item">
+          <div class="edge-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+          <div>
+            <div class="edge-item-title">Precision over volume</div>
+            <div class="edge-item-desc">We do not flood hiring teams with weak matches. We focus on targeted slates built around the technical profile, program environment, and hiring constraints.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process">
+  <div class="section-inner">
+    <div class="process-header">
+      <div>
+        <div class="section-label"><span class="section-label-num">05</span> — Process</div>
+        <h2 class="section-title">A focused process from role intake to <em>candidate slate.</em></h2>
+      </div>
+      <div>
+        <p class="section-body">
+          Federal technical hiring fails when recruiters do not understand the role, the contract environment, or the constraints around who can actually support the program.
+        </p>
+        <p class="section-body" style="margin-top: 1rem;">
+          Our process is built to reduce wasted cycles and deliver candidates your team can evaluate with confidence.
+        </p>
+      </div>
+    </div>
+    <div class="process-steps fade-up">
+      <div class="process-step">
+        <div class="process-num">Step 01</div>
+        <div>
+          <div class="process-title">Program and Role Intake</div>
+          <div class="process-desc">We clarify the technical requirements, labor category, clearance needs, citizenship requirements, work location, compensation range, engagement model, and hiring timeline.</div>
+        </div>
+        <div class="process-output"><strong>Output</strong>Search profile, candidate criteria, sourcing strategy.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">Step 02</div>
+        <div>
+          <div class="process-title">Targeted Technical Sourcing</div>
+          <div class="process-desc">We build a focused search across AI/ML, software engineering, data, cloud, DevSecOps, and federal-adjacent talent networks.</div>
+        </div>
+        <div class="process-output"><strong>Output</strong>Targeted outreach campaign and qualified candidate pipeline.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">Step 03</div>
+        <div>
+          <div class="process-title">Clearance-Aware Screening</div>
+          <div class="process-desc">We screen for current clearance status, clearance eligibility indicators, citizenship requirements, work authorization, geography, availability, compensation alignment, and interest in federal mission work.</div>
+        </div>
+        <div class="process-output"><strong>Output</strong>Candidates filtered for technical and program fit before submission.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">Step 04</div>
+        <div>
+          <div class="process-title">Qualified Candidate Slate</div>
+          <div class="process-desc">You receive a concise slate of candidates with relevant technical background, availability, compensation alignment, location fit, and screening notes.</div>
+        </div>
+        <div class="process-output"><strong>Output</strong>Actionable candidates, not generic resume volume.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">Step 05</div>
+        <div>
+          <div class="process-title">Interview, Feedback, and Close Support</div>
+          <div class="process-desc">We coordinate candidate communication, interview flow, feedback loops, offer process, onboarding handoff, and follow-up.</div>
+        </div>
+        <div class="process-output"><strong>Output</strong>Faster movement from qualified candidate to accepted offer or contract start.</div>
       </div>
     </div>
   </div>
@@ -1453,14 +1739,17 @@
       <div>
         <div class="cap-tag">
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          Capability Statement
+          06 — Capability Statement
         </div>
-        <h2 class="cap-title">Everything a prime needs<br>to vet and onboard us.</h2>
+        <h2 class="cap-title">Procurement details ready for prime-contractor review.</h2>
         <p class="cap-body">
-          Our capability statement includes our NAICS codes, UEI number, CAGE code, core competencies, and past performance. The document primes use to start procurement conversations — ready when you are.
+          Our capability statement gives prime contractors, HR teams, supplier diversity teams, and procurement reviewers the information they need to evaluate Declarative Recruitment as a small-business technical recruiting partner.
         </p>
         <p class="cap-body" style="margin-top: 1rem;">
-          Not ready to download? Get in touch and we'll walk you through the partnership model that fits your contract structure.
+          It includes entity information, SAM.gov status, applicable NAICS codes, UEI, CAGE, core competencies, engagement models, and relevant recruiting experience.
+        </p>
+        <p class="cap-body" style="margin-top: 1rem;">
+          Use it to begin vendor review, subcontracting conversations, or an active recruiting engagement.
         </p>
       </div>
       <div class="cap-doc fade-up">
@@ -1470,7 +1759,7 @@
           </div>
           <div>
             <div class="cap-doc-name">Declarative Recruitment</div>
-            <div class="cap-doc-sub">Capability Statement · 2025</div>
+            <div class="cap-doc-sub">Capability Statement · 2026</div>
           </div>
         </div>
         <div class="cap-doc-rows">
@@ -1479,20 +1768,28 @@
             <span class="cap-doc-row-val">Small Business</span>
           </div>
           <div class="cap-doc-row">
-            <span class="cap-doc-row-key">Primary NAICS</span>
-            <span class="cap-doc-row-val">561310</span>
-          </div>
-          <div class="cap-doc-row">
             <span class="cap-doc-row-key">SAM.gov</span>
             <span class="cap-doc-row-val" style="color: var(--teal); font-size: 11px;">Registered</span>
           </div>
           <div class="cap-doc-row">
             <span class="cap-doc-row-key">Core Focus</span>
-            <span class="cap-doc-row-val">AI/ML · SWE · Data</span>
+            <span class="cap-doc-row-val">AI/ML · Software Engineering · Data · Cloud · DevSecOps</span>
           </div>
           <div class="cap-doc-row">
-            <span class="cap-doc-row-key">Clients</span>
-            <span class="cap-doc-row-val">Federal Prime Contractors</span>
+            <span class="cap-doc-row-key">Models</span>
+            <span class="cap-doc-row-val">Contract Staffing · Direct Hire · Subcontract Partnership</span>
+          </div>
+          <div class="cap-doc-row">
+            <span class="cap-doc-row-key">Buyer Fit</span>
+            <span class="cap-doc-row-val">Prime Contractors · Federal Tech Vendors · Program Teams</span>
+          </div>
+          <div class="cap-doc-row">
+            <span class="cap-doc-row-key">Details</span>
+            <span class="cap-doc-row-val">UEI · CAGE · NAICS available in capability statement</span>
+          </div>
+          <div class="cap-doc-row">
+            <span class="cap-doc-row-key">Differentiator</span>
+            <span class="cap-doc-row-val">Commercial AI/ML network depth with federal program staffing focus</span>
           </div>
         </div>
         <a href="#contact" class="cap-doc-cta">
@@ -1509,11 +1806,14 @@
   <div class="section-inner">
     <div class="contact-grid">
       <div>
-        <div class="section-label"><span class="section-label-num">06</span> — Contact</div>
-        <h2 class="section-title">Let's discuss your <em>hiring needs.</em></h2>
+        <div class="section-label"><span class="section-label-num">07</span> — Contact</div>
+        <h2 class="section-title">Let's discuss your <em>technical hiring need.</em></h2>
         <div class="rule"></div>
         <p class="section-body">
-          Whether you've just won a contract and need to staff quickly, or you're building a subcontracting vendor list — we're ready to talk. No long intake forms. Just a direct conversation.
+          Whether you are staffing an active contract, preparing for a post-award ramp-up, supporting a proposal, or adding a small-business recruiting partner to your vendor bench, we are ready to talk.
+        </p>
+        <p class="section-body" style="margin-top: 1rem;">
+          For urgent searches, include the role type, clearance requirement, work location, timeline, and engagement model.
         </p>
         <div class="contact-channels">
           <a href="mailto:hello@declarativerecruitment.com" class="contact-channel">
@@ -1529,7 +1829,7 @@
       </div>
       <div class="contact-form fade-up">
         <div class="form-title">Start a conversation</div>
-        <div class="form-sub">We typically respond within one business day.</div>
+        <div class="form-sub">Tell us what you are staffing, where the role sits, and how quickly you need qualified candidates.</div>
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">First Name</label>
@@ -1549,22 +1849,75 @@
           <input type="email" class="form-input" placeholder="jane@company.com">
         </div>
         <div class="form-group">
+          <label class="form-label">Organization Type</label>
+          <select class="form-select form-input">
+            <option value="" disabled selected>Select organization type</option>
+            <option>Prime Contractor</option>
+            <option>Federal Technology Vendor</option>
+            <option>Government Agency</option>
+            <option>HR / Talent Team</option>
+            <option>Engineering Team</option>
+            <option>Supplier Diversity / Small Business Office</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label class="form-label">What are you looking for?</label>
           <select class="form-select form-input">
             <option value="" disabled selected>Select an option</option>
-            <option>Contract Staffing — Active Contract</option>
+            <option>Contract Staffing — Active Program</option>
             <option>Direct Hire Placement</option>
             <option>Subcontract Partnership</option>
+            <option>Proposal / Capture Support</option>
             <option>Capability Statement Request</option>
             <option>General Inquiry</option>
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">Message (Optional)</label>
-          <textarea class="form-textarea" placeholder="Tell us about the role or contract..."></textarea>
+          <label class="form-label">Role Type</label>
+          <select class="form-select form-input">
+            <option value="" disabled selected>Select role type</option>
+            <option>AI/ML</option>
+            <option>Software Engineering</option>
+            <option>Data</option>
+            <option>Cloud</option>
+            <option>DevSecOps</option>
+            <option>Cybersecurity</option>
+            <option>Platform Engineering</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Clearance Requirement</label>
+            <select class="form-select form-input">
+              <option value="" disabled selected>Select clearance</option>
+              <option>None</option>
+              <option>Public Trust</option>
+              <option>Secret</option>
+              <option>Top Secret</option>
+              <option>TS/SCI</option>
+              <option>Not Sure Yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hiring Timeline</label>
+            <select class="form-select form-input">
+              <option value="" disabled selected>Select timeline</option>
+              <option>Immediate</option>
+              <option>2-4 Weeks</option>
+              <option>30-60 Days</option>
+              <option>Pre-Award / Planning</option>
+              <option>Ongoing Vendor Need</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell us about the role, contract, location, clearance needs, or hiring challenge..."></textarea>
         </div>
         <button class="form-submit">
-          Send Message
+          Discuss Recruiting Support
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5h10M7.5 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
@@ -1577,19 +1930,20 @@
   <div class="footer-inner">
     <div>
       <div class="footer-brand-name">Declarative Recruitment</div>
-      <div class="footer-brand-desc">Federal technical recruiting for prime contractors. AI/ML and software engineering talent, delivered with precision.</div>
+      <div class="footer-brand-desc">Federal technical recruiting for prime contractors, federal technology vendors, and program teams staffing AI/ML, software engineering, data, cloud, and DevSecOps roles.</div>
       <div class="footer-reg">
         <div class="footer-reg-item"><span class="footer-reg-dot"></span>SAM.gov Registered</div>
-        <div class="footer-reg-item"><span class="footer-reg-dot"></span>NAICS 561310</div>
         <div class="footer-reg-item"><span class="footer-reg-dot"></span>Small Business</div>
+        <div class="footer-reg-item"><span class="footer-reg-dot"></span>Capability Statement Available</div>
       </div>
     </div>
     <div>
       <div class="footer-col-title">Services</div>
       <ul class="footer-links">
         <li><a href="#services">Contract Staffing</a></li>
-        <li><a href="#services">Direct Hire</a></li>
+        <li><a href="#services">Direct Hire Placement</a></li>
         <li><a href="#services">Subcontract Partnership</a></li>
+        <li><a href="#services">Proposal / Capture Support</a></li>
         <li><a href="#capability">Capability Statement</a></li>
       </ul>
     </div>
@@ -1599,7 +1953,10 @@
         <li><a href="#">AI / ML Engineers</a></li>
         <li><a href="#">Software Engineers</a></li>
         <li><a href="#">Data Scientists</a></li>
+        <li><a href="#">Data Engineers</a></li>
         <li><a href="#">DevSecOps</a></li>
+        <li><a href="#">Cloud Engineers</a></li>
+        <li><a href="#">Platform Engineers</a></li>
       </ul>
     </div>
     <div>
@@ -1607,12 +1964,14 @@
       <ul class="footer-links">
         <li><a href="#about">About</a></li>
         <li><a href="#clients">Who We Serve</a></li>
+        <li><a href="#process">Process</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 Declarative Recruitment. All rights reserved.</div>
+    <div class="footer-parent">Federal technical recruiting for contract-critical roles</div>
   </div>
 </footer>
 
