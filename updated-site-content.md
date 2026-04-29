@@ -263,7 +263,7 @@ For urgent searches, include the role type, clearance requirement, work location
 
 ### Contact Channel
 
-**Email:** hello@declarativerecruitment.com
+**Email:** spencer@declarativerecruitment.com
 
 ### Contact Form
 
