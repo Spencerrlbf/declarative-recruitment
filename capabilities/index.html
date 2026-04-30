@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capabilities | Declarative Recruitment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #07091a;
+    --navy-2: #0d1128;
+    --navy-3: #141933;
+    --blue: #3b6ef5;
+    --blue-dim: rgba(59,110,245,0.12);
+    --teal: #0fd4a4;
+    --teal-dim: rgba(15,212,164,0.1);
+    --gold: #d4aa4f;
+    --gold-dim: rgba(212,170,79,0.1);
+    --text: #e8edf8;
+    --text-2: #8896b3;
+    --text-3: #4d5a7a;
+    --border: rgba(255,255,255,0.07);
+    --border-2: rgba(255,255,255,0.12);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(7,9,26,0.84);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+
+  .nav-logo-mark {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 0.05em;
+    background: var(--teal-dim);
+    border: 1px solid rgba(15,212,164,0.2);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .nav-logo-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-2);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a[aria-current="page"] { color: var(--text); }
+
+  .nav-cta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy);
+    background: var(--teal);
+    text-decoration: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s;
+  }
+
+  .nav-cta:hover { opacity: 0.88; }
+
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 8rem 4rem 4rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 30%, rgba(59,110,245,0.1) 0%, transparent 62%),
+      radial-gradient(ellipse 42% 60% at 18% 72%, rgba(15,212,164,0.07) 0%, transparent 55%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 80% 78% at 50% 50%, black 20%, transparent 82%);
+  }
+
+  .hero-inner {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-label,
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .hero-label { color: var(--teal); margin-bottom: 2rem; }
+
+  .hero-label::before,
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(52px, 7vw, 92px);
+    font-weight: 300;
+    line-height: 1.04;
+    color: var(--text);
+    max-width: 920px;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-title em,
+  .section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-copy {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.75;
+    max-width: 640px;
+    margin-bottom: 2.75rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 0.875rem 1.75rem;
+    border-radius: 4px;
+    transition: opacity 0.2s, border-color 0.2s, color 0.2s;
+  }
+
+  .btn-primary {
+    font-weight: 500;
+    color: var(--navy);
+    background: var(--teal);
+  }
+
+  .btn-primary:hover { opacity: 0.88; }
+
+  .btn-ghost {
+    font-weight: 400;
+    color: var(--text-2);
+    border: 1px solid var(--border-2);
+  }
+
+  .btn-ghost:hover {
+    color: var(--text);
+    border-color: rgba(255,255,255,0.25);
+  }
+
+  .hero-proof {
+    position: relative;
+    max-width: 1100px;
+    margin: -2rem auto 0;
+    padding: 0 4rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+  }
+
+  .proof-item {
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+    padding: 1.35rem 1.5rem;
+  }
+
+  .proof-num {
+    font-family: var(--serif);
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+
+  .proof-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  section {
+    padding: 6.5rem 4rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-alt { background: var(--navy-2); }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 1.35rem;
+  }
+
+  .section-body {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.8;
+    max-width: 570px;
+  }
+
+  .snapshot-grid,
+  .capability-grid,
+  .buyer-grid {
+    display: grid;
+    gap: 1px;
+  }
+
+  .snapshot-grid { grid-template-columns: repeat(3, 1fr); }
+  .capability-grid { grid-template-columns: repeat(2, 1fr); }
+  .buyer-grid { grid-template-columns: repeat(3, 1fr); }
+
+  .snapshot-item,
+  .capability-card,
+  .buyer-card,
+  .trigger-item {
+    background: var(--navy);
+    border: 1px solid var(--border);
+    padding: 1.75rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .snapshot-item:hover,
+  .capability-card:hover,
+  .buyer-card:hover,
+  .trigger-item:hover {
+    border-color: var(--border-2);
+    background: var(--navy-3);
+  }
+
+  .snapshot-key,
+  .card-kicker,
+  .trigger-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .snapshot-value,
+  .card-title,
+  .buyer-title,
+  .trigger-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.35;
+  }
+
+  .snapshot-note,
+  .card-copy,
+  .buyer-copy,
+  .trigger-copy {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-top: 0.65rem;
+  }
+
+  .card-list {
+    list-style: none;
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .card-list li {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .trigger-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .trigger-item {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 2rem;
+  }
+
+  .final-cta {
+    background: linear-gradient(135deg, var(--navy) 0%, #0c1232 100%);
+  }
+
+  .cta-panel {
+    display: grid;
+    grid-template-columns: 1.1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .download-card {
+    min-width: 320px;
+    background: var(--navy-2);
+    border: 1px solid var(--border-2);
+    border-radius: 10px;
+    padding: 2rem;
+  }
+
+  .download-title {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .download-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .download-card .btn-primary,
+  .download-card .btn-ghost { width: 100%; }
+
+  footer {
+    background: var(--navy-2);
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .footer-copy,
+  .footer-link {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .footer-link:hover { color: var(--text); }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 1200px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero { min-height: auto; padding: 8rem 1.5rem 4rem; }
+    .hero-proof { grid-template-columns: repeat(2, 1fr); padding: 0 1.5rem 4rem; margin-top: 0; }
+    section { padding: 5rem 1.5rem; }
+    .split, .cta-panel { grid-template-columns: 1fr; gap: 2.5rem; }
+    .snapshot-grid, .capability-grid, .buyer-grid { grid-template-columns: 1fr; }
+    .trigger-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .download-card { min-width: 0; width: 100%; }
+  }
+
+  @media (max-width: 640px) {
+    .hero-actions { align-items: stretch; flex-direction: column; }
+    .btn-primary, .btn-ghost { width: 100%; }
+    .hero-proof { grid-template-columns: 1fr; }
+    .footer-inner { align-items: flex-start; flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <span class="nav-logo-mark">DR</span>
+    <span class="nav-logo-name">Declarative Recruitment</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#services">Services</a></li>
+    <li><a href="../index.html#clients">Who We Serve</a></li>
+    <li><a href="../index.html#edge">Why Us</a></li>
+    <li><a href="../index.html#process">Process</a></li>
+    <li><a href="./" aria-current="page">Capability</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+  <a href="../index.html#contact" class="nav-cta">Discuss a Search</a>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-label">Federal Technical Recruiting Capability</div>
+      <h1 class="hero-title">Technical recruiting capacity for federal programs that need to <em>staff with confidence.</em></h1>
+      <p class="hero-copy">
+        Declarative Recruitment supports prime contractors, federal technology vendors, and program teams with focused AI/ML, software engineering, data, cloud, and DevSecOps recruiting for contract-critical roles.
+      </p>
+      <div class="hero-actions">
+        <a href="../Declarative-Recruitment-Capabilities-Statement.pdf" class="btn-primary" download="Declarative-Recruitment-Capabilities-Statement.pdf">
+          Download Capability Statement
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 1.5v7M3 5l3.5 3.5L10 5M2 11.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="../index.html#contact" class="btn-ghost">Discuss Recruiting Support</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="hero-proof">
+    <div class="proof-item">
+      <div class="proof-num">AI/ML</div>
+      <div class="proof-label">Software · Data · Cloud</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">SB</div>
+      <div class="proof-label">SAM.gov Registered</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">Aware</div>
+      <div class="proof-label">Clearance Screening</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">Slate</div>
+      <div class="proof-label">Targeted Candidate Delivery</div>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="split">
+        <div>
+          <div class="section-label">Procurement Snapshot</div>
+          <h2 class="section-title">The quick read for vendor review.</h2>
+          <p class="section-body">
+            This page gives procurement, supplier diversity, HR, and program teams the public version of our capability profile. Detailed identifiers are available in the downloadable capability statement.
+          </p>
+        </div>
+        <div class="snapshot-grid fade-up">
+          <div class="snapshot-item">
+            <div class="snapshot-key">Entity Type</div>
+            <div class="snapshot-value">Small Business</div>
+            <div class="snapshot-note">Built to support prime-contractor vendor and subcontracting conversations.</div>
+          </div>
+          <div class="snapshot-item">
+            <div class="snapshot-key">Registration</div>
+            <div class="snapshot-value">SAM.gov Registered</div>
+            <div class="snapshot-note">Procurement details available in the downloadable statement.</div>
+          </div>
+          <div class="snapshot-item">
+            <div class="snapshot-key">Core Focus</div>
+            <div class="snapshot-value">AI/ML · SWE · Data</div>
+            <div class="snapshot-note">Expanded coverage across cloud, platform, DevSecOps, and cyber-adjacent roles.</div>
+          </div>
+          <div class="snapshot-item">
+            <div class="snapshot-key">Engagement Models</div>
+            <div class="snapshot-value">Contract · Direct Hire · Subcontract</div>
+            <div class="snapshot-note">Support for active programs, post-award ramp-ups, and long-term hiring needs.</div>
+          </div>
+          <div class="snapshot-item">
+            <div class="snapshot-key">Buyer Fit</div>
+            <div class="snapshot-value">Primes · Federal Tech Vendors · Program Teams</div>
+            <div class="snapshot-note">Designed for teams with urgent technical hiring needs and clear constraints.</div>
+          </div>
+          <div class="snapshot-item">
+            <div class="snapshot-key">Delivery Style</div>
+            <div class="snapshot-value">Targeted Candidate Slates</div>
+            <div class="snapshot-note">Qualified candidates aligned to technical profile, timeline, location, and security constraints.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="section-inner">
+      <div class="split" style="margin-bottom: 4rem;">
+        <div>
+          <div class="section-label">Core Capabilities</div>
+          <h2 class="section-title">Recruiting support for the roles primes cannot afford to miss.</h2>
+        </div>
+        <p class="section-body">
+          We focus on technical recruiting where generic sourcing falls short: hard role requirements, federal delivery environments, clearance considerations, geography, compensation alignment, and contract-driven urgency.
+        </p>
+      </div>
+      <div class="capability-grid fade-up">
+        <div class="capability-card">
+          <div class="card-kicker">Capability 01</div>
+          <div class="card-title">AI/ML and Applied Engineering Recruiting</div>
+          <div class="card-copy">Search support for machine learning engineers, applied AI engineers, data scientists, ML infrastructure engineers, and production-oriented AI teams.</div>
+          <ul class="card-list">
+            <li>Applied ML</li>
+            <li>Data Science</li>
+            <li>ML Infrastructure</li>
+          </ul>
+        </div>
+        <div class="capability-card">
+          <div class="card-kicker">Capability 02</div>
+          <div class="card-title">Software, Cloud, and Platform Recruiting</div>
+          <div class="card-copy">Candidate sourcing for software engineers, platform engineers, cloud engineers, data engineers, DevSecOps engineers, and technical leads.</div>
+          <ul class="card-list">
+            <li>Software Engineering</li>
+            <li>Cloud Infrastructure</li>
+            <li>Platform Teams</li>
+          </ul>
+        </div>
+        <div class="capability-card">
+          <div class="card-kicker">Capability 03</div>
+          <div class="card-title">Clearance-Aware Screening</div>
+          <div class="card-copy">Early screening around current clearance status, citizenship, work authorization, geography, compensation, availability, and willingness to support federal mission work.</div>
+          <ul class="card-list">
+            <li>Clearance Signals</li>
+            <li>Citizenship Requirements</li>
+            <li>Location Fit</li>
+          </ul>
+        </div>
+        <div class="capability-card">
+          <div class="card-kicker">Capability 04</div>
+          <div class="card-title">Contract Staffing and Direct Hire</div>
+          <div class="card-copy">Support for active program staffing, surge needs, post-award ramp-ups, recompete transitions, and permanent technical hires.</div>
+          <ul class="card-list">
+            <li>Contract Staffing</li>
+            <li>Contract-to-Hire</li>
+            <li>Direct Hire</li>
+          </ul>
+        </div>
+        <div class="capability-card">
+          <div class="card-kicker">Capability 05</div>
+          <div class="card-title">Proposal and Capture Recruiting Support</div>
+          <div class="card-copy">Talent mapping and early pipeline development for proposal teams, capture teams, and post-award planning around technical labor categories.</div>
+          <ul class="card-list">
+            <li>Talent Mapping</li>
+            <li>Labor Categories</li>
+            <li>Pre-Award Support</li>
+          </ul>
+        </div>
+        <div class="capability-card">
+          <div class="card-kicker">Capability 06</div>
+          <div class="card-title">Small-Business Subcontract Partnership</div>
+          <div class="card-copy">A procurement-ready recruiting partner for primes that need credible technical hiring support while supporting small-business participation strategies.</div>
+          <ul class="card-list">
+            <li>Vendor Onboarding</li>
+            <li>Subcontract Support</li>
+            <li>Capability Statement Ready</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-inner">
+      <div class="split" style="margin-bottom: 4rem;">
+        <div>
+          <div class="section-label">Engagement Objectives</div>
+          <h2 class="section-title">The conversations we are built to support.</h2>
+        </div>
+        <p class="section-body">
+          Most partner conversations start with a staffing constraint, a delivery deadline, or a proposal requirement. These are the moments where Declarative Recruitment is designed to plug in.
+        </p>
+      </div>
+      <div class="trigger-list fade-up">
+        <div class="trigger-item">
+          <div class="trigger-num">Need 01</div>
+          <div>
+            <div class="trigger-title">Staff an active federal program</div>
+            <div class="trigger-copy">You have open technical roles tied to contract delivery and need qualified candidates quickly.</div>
+          </div>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-num">Need 02</div>
+          <div>
+            <div class="trigger-title">Prepare for a post-award ramp-up</div>
+            <div class="trigger-copy">You need talent mapping, candidate pipelines, or recruiting capacity before staffing pressure peaks.</div>
+          </div>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-num">Need 03</div>
+          <div>
+            <div class="trigger-title">Fill difficult AI, software, data, or cloud roles</div>
+            <div class="trigger-copy">The role requires technical credibility, targeted sourcing, and screening beyond keyword matching.</div>
+          </div>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-num">Need 04</div>
+          <div>
+            <div class="trigger-title">Add a small-business recruiting partner</div>
+            <div class="trigger-copy">You need a vendor that supports subcontracting strategy while still delivering serious technical recruiting depth.</div>
+          </div>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-num">Need 05</div>
+          <div>
+            <div class="trigger-title">Support proposal or capture staffing strategy</div>
+            <div class="trigger-copy">You need help mapping likely candidate profiles and planning for labor categories before award.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="section-inner">
+      <div class="split" style="margin-bottom: 4rem;">
+        <div>
+          <div class="section-label">Who We Support</div>
+          <h2 class="section-title">Built for teams responsible for technical delivery.</h2>
+        </div>
+        <p class="section-body">
+          We work best with teams that know the program requirements, understand the technical bar, and need a focused recruiting partner to convert that clarity into a usable candidate slate.
+        </p>
+      </div>
+      <div class="buyer-grid fade-up">
+        <div class="buyer-card">
+          <div class="buyer-title">Prime Contractors</div>
+          <div class="buyer-copy">Small-business recruiting support for hard-to-fill technical roles on active federal programs.</div>
+        </div>
+        <div class="buyer-card">
+          <div class="buyer-title">Federal Technology Vendors</div>
+          <div class="buyer-copy">Access to commercial AI/ML, software, data, and cloud talent for government-focused delivery teams.</div>
+        </div>
+        <div class="buyer-card">
+          <div class="buyer-title">Program Managers</div>
+          <div class="buyer-copy">Staffing support aligned to contract timelines, locations, labor categories, and program constraints.</div>
+        </div>
+        <div class="buyer-card">
+          <div class="buyer-title">Engineering Leaders</div>
+          <div class="buyer-copy">Technically credible candidates who can contribute quickly and understand delivery expectations.</div>
+        </div>
+        <div class="buyer-card">
+          <div class="buyer-title">HR and Talent Teams</div>
+          <div class="buyer-copy">Additional search capacity for niche technical roles that need specialized sourcing attention.</div>
+        </div>
+        <div class="buyer-card">
+          <div class="buyer-title">Supplier Diversity Teams</div>
+          <div class="buyer-copy">A legitimate small-business partner with public capability materials and procurement-ready documentation.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="section-inner">
+      <div class="cta-panel">
+        <div>
+          <div class="section-label">Next Step</div>
+          <h2 class="section-title">Review the statement, then bring us the role.</h2>
+          <p class="section-body">
+            Download the PDF for procurement review, or start a conversation if you have an active search, upcoming award, proposal requirement, or vendor onboarding need.
+          </p>
+        </div>
+        <div class="download-card fade-up">
+          <div class="download-title">Declarative Recruitment</div>
+          <div class="download-meta">Capability Statement · PDF · 2026</div>
+          <a href="../Declarative-Recruitment-Capabilities-Statement.pdf" class="btn-primary" download="Declarative-Recruitment-Capabilities-Statement.pdf">
+            Download Capability Statement
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 1.5v7M3 5l3.5 3.5L10 5M2 11.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="../index.html#contact" class="btn-ghost" style="margin-top: 0.875rem;">Discuss Recruiting Support</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 Declarative Recruitment. All rights reserved.</div>
+    <a class="footer-link" href="mailto:hiring@declarativerecruitment.com">hiring@declarativerecruitment.com</a>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
