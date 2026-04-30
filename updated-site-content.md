@@ -30,7 +30,7 @@ We combine deep technical recruiting networks with clearance-aware screening and
 **CTAs:**
 
 - Discuss an Active Search
-- Request Capability Statement
+- Download Capability Statement
 
 ### Stats / Proof Strip
 
@@ -251,7 +251,7 @@ Use it to begin vendor review, subcontracting conversations, or an active recrui
 | Procurement Details | UEI · CAGE · NAICS available in capability statement |
 | Differentiator | Commercial AI/ML network depth with federal program staffing focus |
 
-**CTA:** Request Capability Statement
+**CTA:** Download Capability Statement
 
 ## 07 - Contact
 
