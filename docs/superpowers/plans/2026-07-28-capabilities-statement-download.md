@@ -44,7 +44,7 @@
 test -f 'Capabilities Statement Update-design.pdf'
 test -f 'Declarative-Recruitment-Capabilities-Statement.pdf'
 file 'Capabilities Statement Update-design.pdf' 'Declarative-Recruitment-Capabilities-Statement.pdf'
-test "$(rg -c 'href=\"Declarative-Recruitment-Capabilities-Statement\\.pdf\"[^>]*download' index.html)" -eq 2
+test "$(rg -c 'href=\"Declarative-Recruitment-Capabilities-Statement\.pdf\"[^>]*download' index.html)" -eq 2
 if cmp -s 'Capabilities Statement Update-design.pdf' 'Declarative-Recruitment-Capabilities-Statement.pdf'; then
   echo 'Preflight failed: the public PDF already matches the source.' >&2
   exit 1
@@ -87,8 +87,8 @@ Expected: one complete portrait page with a white background; all headings, comp
 - [ ] **Step 5: Verify the website references and implementation scope**
 
 ```bash
-test "$(rg -c 'href=\"Declarative-Recruitment-Capabilities-Statement\\.pdf\"[^>]*download' index.html)" -eq 2
-rg -n 'href=\"Declarative-Recruitment-Capabilities-Statement\\.pdf\"[^>]*download' index.html
+test "$(rg -c 'href=\"Declarative-Recruitment-Capabilities-Statement\.pdf\"[^>]*download' index.html)" -eq 2
+rg -n 'href=\"Declarative-Recruitment-Capabilities-Statement\.pdf\"[^>]*download' index.html
 git diff --check
 git diff --name-only HEAD
 ```
@@ -103,4 +103,3 @@ git commit -m 'Update downloadable capabilities statement'
 ```
 
 Expected: the commit contains only the public PDF asset. The supplied source PDF and all pre-existing unrelated files remain untracked and unchanged.
-
