@@ -41,4 +41,3 @@ Keep the supplied source PDF in place and do not modify unrelated working-tree f
 - Render the public target and visually inspect it for clipping, overlap, missing text, or unreadable content.
 - Confirm both download anchors still target `Declarative-Recruitment-Capabilities-Statement.pdf`.
 - Confirm the implementation changes only the intended public PDF asset, apart from the separately committed design and implementation documentation.
-
